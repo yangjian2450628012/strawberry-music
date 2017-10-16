@@ -1,0 +1,13 @@
+#配置信息
+server:
+  port: 8080
+  Context-path: /music
+#方法一，每个属性都单独写
+cupSize: B
+age: 18
+#配置文件中再使用当前配置
+content: "cupSize: ${cupSize},age: ${age}"
+#方法二，使用对象
+girl:
+  cupSize: F
+  age: 18

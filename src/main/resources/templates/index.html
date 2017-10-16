@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>草莓音乐 | 后台数据管理</title>
+    <link rel="stylesheet" href="layui/css/layui.css" type="text/css">
+    <link rel="stylesheet" href="css/music.css" type="text/css">
+</head>
+<body>
+<div class="layui-header header">
+    <div class="main">
+        <ul class="layui-nav" lay-filter="">
+            <li class="layui-nav-item">
+                <a href="http://www.yobbo.tech" target="_balck" class="logo-a">
+                    <img alt="logo" src="img/logo.png" class="logo-img" />
+                </a>
+            </li>
+            <li class="layui-nav-item layui-this"><a href="">首页</a></li>
+            <li class="layui-nav-item"><a href="manage">歌曲管理</a></li>
+            <li class="layui-nav-item"><a href="community.html">社区</a></li>
+        </ul>
+    </div>
+</div>
+<div class="layui-body index-body">
+    <h2 class="index-body-h2">草莓音乐</h2>
+    <table class="layui-table" style="margin-bottom: 50px;">
+        <colgroup>
+            <col width="10%">
+            <col width="85%">
+            <col>
+        </colgroup>
+        <tbody>
+        <tr>
+            <td class="td_lable">版本</td>
+            <td >1.0.0</td>
+        </tr>
+        <tr>
+            <td class="td_lable">专辑总数</td>
+            <td>
+               56
+            </td>
+        </tr>
+        <tr>
+            <td class="td_lable">无损专辑</td>
+            <td>
+               40
+            </td>
+        </tr>
+        <tr>
+            <td class="td_lable">线上专辑总数</td>
+            <td >30</td>
+        </tr>
+        <tr>
+            <td class="td_lable">收藏总数</td>
+            <td id="template_path">
+                20
+            </td>
+        </tr>
+        <tr>
+            <td class="td_lable">app下载量</td>
+            <td>100000</td>
+        </tr>
+        <tr>
+            <td class="td_lable">app下载地址</td>
+            <td>
+               http://xxx.xxx.com
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="./layui/layui.js" type="application/javascript"></script>
+</body>
+</html>

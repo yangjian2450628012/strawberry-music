@@ -1,0 +1,40 @@
+#配置文件环境选择
+spring:
+  profiles:
+    active: dev
+  velocity:
+    charset: UTF-8
+    properties:
+      input.encoding: UTF-8
+      output.encoding: UTF-8
+    resourceLoaderPath: classpath:/templates/
+    suffix: .html
+    allow-request-override: false
+    allow-session-override: false
+    check-template-location: true
+    content-type: text/html
+    enabled: true
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: true
+    prefer-file-system-access: true
+#    toolbox-config-location: classpath:toolbox.xml
+
+#  freemarker:
+#    allow-request-override:  false
+#    cache: true
+#    check-template-location: true
+#    charset: utf-8
+#    content-type: text/html
+#    expose-request-attributes: false
+#    expose-session-attributes: false
+#    expose-spring-macro-helpers: false
+#    template-loader-path: classpath:/templates/
+#  mvc:
+#    static-path-pattern: /static/**
+#    suffix: .html
+#    prefix: /templates/
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/jsp/
+#      suffix: .jsp
