@@ -1,6 +1,6 @@
 #配置信息
 server:
-  port: 80
+  port: 8888
   Context-path: /music
 ##方法一，每个属性都单独写
 #cupSize: B

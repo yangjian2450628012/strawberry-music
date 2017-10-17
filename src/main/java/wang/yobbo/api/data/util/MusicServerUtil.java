@@ -1,5 +1,6 @@
 package wang.yobbo.api.data.util;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.StringUtils;
@@ -18,26 +19,56 @@ import java.util.Map;
  * 提供数据接口公共类
  */
 public class MusicServerUtil {
+    private static String kgSearchUrl = "http://mobilecdn.kugou.com/api/v3/search/song?format=jsonp&keyword=%s&page=%s&pageSize=%s&showtype=1";
+    private static String qqSearchUrl = "http://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp?format=json&ie=utf-8&zhidaqu=1&catZhida=1&t=0&flag=1&sem=1&aggr=1&w=%s&perpage=%s&n=%s&p=%s&remoteplace=txt.mqq.all";
 
+    public String getQQSearchList(String key, int page, int pageSize, String userAgent) throws Exception {
+        try {
+            if(StringUtils.isEmpty(key)){
+                throw new Exception("值不能为空!");
+            }
+            String url = String.format(qqSearchUrl, key, pageSize, pageSize, page);
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("user-agent", userAgent);
+            RestTemplate restTemplate = new RestTemplate();
+            headers.set("user-agent", userAgent);
+            headers.setAccept(Arrays.asList(new MediaType[]{new MediaType("application", "json", Charset.forName("UTF-8"))}));
+            headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+            HttpEntity<Map<String,Object>> requestEntity = new HttpEntity<>(null, headers);
+            ResponseEntity<String> response = restTemplate.postForEntity(url, requestEntity, String.class);
+            if(response.getStatusCode().is2xxSuccessful())
+            {
+                JSONObject body = JSONObject.parseObject(response.getBody());
+                if(0 == body.getIntValue("code")){
+                    JSONObject data = body.getJSONObject("data");
+                    JSONObject song = data.getJSONObject("song");
+                    JSONObject zhida = data.getJSONObject("zhida");
+                }else{
+                    throw new Exception(body.getString("message"));
+                }
+            }
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+
+        return "";
+    }
 
     //获取kg音乐搜索结果
-    public String getKgSearchList(String key, int page, int pageSize) throws Exception {
+    public String getKgSearchList(String key, int page, int pageSize, String userAgent) throws Exception {
         try {
             if(StringUtils.isEmpty(key)){
                 throw new Exception("值不能为空!");
             }
             RestTemplate restTemplate = new RestTemplate();
-            StringBuilder url = new StringBuilder();
-            url.append("http://mobilecdn.kugou.com/api/v3/search/song?format=jsonp");
-            url.append("&keyword=").append(key);
-            url.append("&page=").append(page);
-            url.append("&pageSize=").append(pageSize);
-            url.append("&showtype=1");
+            String url = String.format(kgSearchUrl, key, page, pageSize); //格式化url
             HttpHeaders headers = new HttpHeaders();
+            headers.set("user-agent", userAgent);
             headers.setAccept(Arrays.asList(new MediaType[]{new MediaType("application", "json", Charset.forName("UTF-8"))}));
             headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
-            HttpEntity<Map<String,Object>> requestEntity = new HttpEntity<Map<String,Object>>(null, headers);
-            ResponseEntity<String> response = restTemplate.postForEntity(url.toString(), requestEntity, String.class);
+            HttpEntity<Map<String,Object>> requestEntity = new HttpEntity<>(null, headers);
+            ResponseEntity<String> response = restTemplate.postForEntity(url, requestEntity, String.class);
+            System.out.println(response.getBody());
             if(response.getStatusCode().is2xxSuccessful()){
                 String body = response.getBody();
                 if(body.indexOf("(") == 0 && body.lastIndexOf(")") == body.length()-1)
@@ -79,9 +110,13 @@ public class MusicServerUtil {
     }
 
     public static void main(String[] arg0){
+        String s = "http://127.0.0.1:8080?name=%s&age=%s";
+        s = String.format(s, "yangyang", 12);
+        System.out.println(s);
+
         try {
-            String list = new MusicServerUtil().getKgSearchList("毛不易", 1, 10);
-            System.out.println(list);
+//            String list = new MusicServerUtil().getKgSearchList("毛不易", 1, 10,null);
+//            System.out.println(list);
         } catch (Exception e) {
             e.printStackTrace();
         }
