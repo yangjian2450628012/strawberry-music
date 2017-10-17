@@ -20,27 +20,21 @@ public class DataKdcController {
     
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     @ResponseBody
-    public String search(@RequestParam Map<String,Object> parama, HttpServletRequest request){
-        Enumeration<String> headerNames = request.getHeaderNames();
-        while (headerNames.hasMoreElements()){
-            String key = headerNames.nextElement();
-            System.out.println("header==>  "+ key + "=" +request.getHeader(key));
-        }
-        System.out.println(parama);
-        if(!parama.containsKey("key") || null == parama.get("key") || "".equals(parama.get("key"))){
+    public String search(HttpServletRequest request){
+        String key = request.getParameter("key");
+        if(null == key || "".equals(key)){
             return "{\"ret\":1,\"msg\":\"key不能为空!\"}";
         }
-        int page = Integer.valueOf(parama.get("page").toString());
-        int pageSize = Integer.valueOf(parama.get("pageSize").toString());
+        int page = Integer.valueOf(request.getParameter("page"));
+        int pageSize = Integer.valueOf(request.getParameter("pageSize"));
         MusicServerUtil musicServerUtil = new MusicServerUtil();
         try {
-            String r = musicServerUtil.getKgSearchList(parama.get("key").toString(), page, pageSize, request.getHeader("user-agent"));
+            String rs = musicServerUtil.getKgSearchList(key, page, pageSize, request.getHeader("user-agent"));
             //TODO做逻辑处理
-            return r;
+            return rs;
         } catch (Exception e) {
             e.printStackTrace();
             return e.getMessage();
         }
     }
-    
 }
