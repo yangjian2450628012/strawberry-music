@@ -1,15 +1,14 @@
-package wang.yobbo.api.data.kdc;
+package wang.yobbo.api.data.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import wang.yobbo.properties.APIProperties;
 import wang.yobbo.api.data.util.MusicServerUtil;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Enumeration;
-import java.util.Map;
 
 /**
  * Created by xiaoJ on 2017/10/16.
@@ -17,7 +16,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/ms/g")
 public class DataKdcController {
-    
+
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     @ResponseBody
     public String search(HttpServletRequest request){

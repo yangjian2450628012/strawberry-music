@@ -1,4 +1,4 @@
-package wang.yobbo.api.data.proper;
+package wang.yobbo.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -12,7 +12,7 @@ import java.util.Map;
  */
 @Component
 @ConfigurationProperties(prefix="music")
-public class ApiProperties {
+public class APIProperties {
     private Map<String,Object> kg = new HashMap<>();
     private Map<String,Object> qmsq = new HashMap<>();
 
@@ -31,5 +31,6 @@ public class ApiProperties {
     public void setQmsq(Map<String, Object> qmsq) {
         this.qmsq = qmsq;
     }
-   
+
+
 }

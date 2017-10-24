@@ -2,19 +2,10 @@
 server:
   port: 8888
   Context-path: /music
-##方法一，每个属性都单独写
-#cupSize: B
-#age: 18
-##配置文件中再使用当前配置
-#content: "cupSize: ${cupSize},age: ${age}"
-##方法二，使用对象
-#girl:
-#  cupSize: B
-#  age: 18
 music:
   kg:
-    listUrl: http://mobilecdn.kugou.com/api/v3/search/song?format=jsonp
+    listUrl: http://mobilecdn.kugou.com/api/v3/search/song?format=jsonp&keyword=%s&page=%s&pagesize=%s&showtype=1
     detailUrl: http://m.kugou.com/app/i/getSongInfo.php?cmd=playInfo
   qmsq:
-    listUrl: http://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp
+    listUrl: http://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp?format=json&ie=utf-8&zhidaqu=1&catZhida=1&t=0&flag=1&sem=1&aggr=1&w=%s&perpage=%s&n=%s&p=%s&remoteplace=txt.mqq.all
     detailUrl: http://c.y.qq.com/v8/playsong.html

@@ -18,6 +18,7 @@ import java.util.Map;
  * 提供数据接口公共类
  */
 public class MusicServerUtil {
+
     private static String kgSearchUrl = "http://mobilecdn.kugou.com/api/v3/search/song?format=jsonp&keyword=%s&page=%s&pagesize=%s&showtype=1";
     private static String qqSearchUrl = "http://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp?format=json&ie=utf-8&zhidaqu=1&catZhida=1&t=0&flag=1&sem=1&aggr=1&w=%s&perpage=%s&n=%s&p=%s&remoteplace=txt.mqq.all";
     private static String[] searchArray = new String[]{"artist","song_name","album_name","hash","album_id","mvhash","data_source"};
