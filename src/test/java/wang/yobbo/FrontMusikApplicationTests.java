@@ -5,15 +5,14 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import wang.yobbo.properties.APIApplicationProperties;
 import wang.yobbo.properties.APIProperties;
-import wang.yobbo.properties.GirlProperties;
 
 import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class FrontMusikApplicationTests {
-	@Autowired GirlProperties girlProperties;
 	@Autowired
     APIProperties apiProperties;
 
@@ -27,6 +26,13 @@ public class FrontMusikApplicationTests {
 //        System.out.println(age);
         Map<String, Object> kg = this.apiProperties.getKg();
         System.out.println(kg);
+
+    }
+
+    @Test
+	public void proPerties(){
+        String qqSearchUrl = APIApplicationProperties.getQqSearchUrl();
+        System.out.println("qqSearchUrl: " + qqSearchUrl);
 
     }
 
